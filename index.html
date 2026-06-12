@@ -40,6 +40,16 @@
     ::-webkit-scrollbar-track { background: var(--dark2); }
     ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
 
+    /* ── GLOBAL IMAGE QUALITY ENHANCEMENT ── */
+    img {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+      -webkit-font-smoothing: subpixel-antialiased;
+    }
+
     /* ── NAV ── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
@@ -103,10 +113,13 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background-image: url('villa_hero.png');
+      background-image: url('real_pool.jpg');
       background-size: cover; background-position: center;
       transform: scale(1.05);
       animation: heroZoom 12s ease-out forwards;
+      filter: contrast(1.12) saturate(1.25) brightness(1.04);
+      will-change: transform;
+      -webkit-backface-visibility: hidden;
     }
     @keyframes heroZoom {
       from { transform: scale(1.08); }
@@ -239,6 +252,8 @@
       width: 100%;
       aspect-ratio: 4/5;
       object-fit: cover;
+      filter: contrast(1.1) saturate(1.2) brightness(1.03);
+      will-change: transform;
     }
     .about-img-accent {
       position: absolute;
@@ -247,6 +262,7 @@
       aspect-ratio: 1;
       object-fit: cover;
       border: 6px solid var(--dark2);
+      filter: contrast(1.1) saturate(1.2) brightness(1.03);
     }
     .about-badge {
       position: absolute;
@@ -343,8 +359,14 @@
     .gallery-item img {
       width: 100%; height: 100%;
       object-fit: cover;
-      transition: transform 0.6s ease;
+      transition: transform 0.6s ease, filter 0.4s ease;
       display: block;
+      filter: contrast(1.12) saturate(1.22) brightness(1.04);
+      will-change: transform, filter;
+      -webkit-backface-visibility: hidden;
+    }
+    .gallery-item:hover img {
+      filter: contrast(1.16) saturate(1.3) brightness(1.07);
     }
     .gallery-item:hover img { transform: scale(1.07); }
     .g1 { grid-column: 1 / 8; grid-row: 1; aspect-ratio: 16/9; }
@@ -376,9 +398,15 @@
       width: 100%; aspect-ratio: 4/3;
       object-fit: cover;
       display: block;
-      transition: transform 0.5s;
+      transition: transform 0.5s, filter 0.4s;
+      filter: contrast(1.1) saturate(1.18) brightness(1.03);
+      will-change: transform, filter;
+      -webkit-backface-visibility: hidden;
     }
-    .room-card:hover .room-img { transform: scale(1.04); }
+    .room-card:hover .room-img {
+      transform: scale(1.04);
+      filter: contrast(1.15) saturate(1.25) brightness(1.06);
+    }
     .room-img-wrap { overflow: hidden; }
     .room-body { padding: 1.8rem; }
     .room-tag {
@@ -427,9 +455,10 @@
     }
     .exp-bg {
       position: absolute; inset: 0;
-      background-image: url('villa_pool.png');
+      background-image: url('real_dining2.png');
       background-size: cover; background-position: center;
       background-attachment: fixed;
+      filter: contrast(1.1) saturate(1.2) brightness(1.02);
     }
     .exp-overlay {
       position: absolute; inset: 0;
@@ -729,8 +758,8 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="about-img-wrap reveal">
-    <img src="villa_hero.png" alt="Aahna Villa Exterior" class="about-img-main" />
-    <img src="villa_living.png" alt="Aahna Villa Living Room" class="about-img-accent" />
+    <img src="real_pool.jpg" alt="Aahna Villa Exterior" class="about-img-main" />
+    <img src="real_bedroom.jpg" alt="Aahna Villa Bedroom" class="about-img-accent" />
     <div class="about-badge">
       <strong>5★</strong>
       <span>Luxury Villa</span>
@@ -818,20 +847,20 @@
     <div class="divider center"></div>
   </div>
   <div class="gallery-grid">
-    <div class="gallery-item g1 reveal" onclick="openLightbox('villa_hero.png')">
-      <img src="villa_hero.png" alt="Aahna Villa Exterior" />
+    <div class="gallery-item g1 reveal" onclick="openLightbox('real_pool.jpg')">
+      <img src="real_pool.jpg" alt="Aahna Villa Pool at Sunset" />
     </div>
-    <div class="gallery-item g2 reveal" onclick="openLightbox('villa_pool.png')">
-      <img src="villa_pool.png" alt="Infinity Pool" />
+    <div class="gallery-item g2 reveal" onclick="openLightbox('real_dining2.png')">
+      <img src="real_dining2.png" alt="Villa Family Dining" />
     </div>
-    <div class="gallery-item g3 reveal" onclick="openLightbox('villa_bedroom.png')">
-      <img src="villa_bedroom.png" alt="Master Bedroom" />
+    <div class="gallery-item g3 reveal" onclick="openLightbox('real_bedroom.jpg')">
+      <img src="real_bedroom.jpg" alt="Master Bedroom" />
     </div>
-    <div class="gallery-item g4 reveal" onclick="openLightbox('villa_dining.png')">
-      <img src="villa_dining.png" alt="Outdoor Dining" />
+    <div class="gallery-item g4 reveal" onclick="openLightbox('real_living.jpg')">
+      <img src="real_living.jpg" alt="Open Living Room" />
     </div>
-    <div class="gallery-item g5 reveal" onclick="openLightbox('villa_living.png')">
-      <img src="villa_living.png" alt="Living Room" />
+    <div class="gallery-item g5 reveal" onclick="openLightbox('real_hero.jpg')">
+      <img src="real_hero.jpg" alt="Aahna Villa Night View" />
     </div>
   </div>
 </section>
@@ -846,7 +875,7 @@
   <div class="rooms-grid">
     <div class="room-card reveal">
       <div class="room-img-wrap">
-        <img src="villa_bedroom.png" alt="Master Suite" class="room-img" />
+        <img src="real_bedroom.jpg" alt="Master Suite" class="room-img" />
       </div>
       <div class="room-body">
         <span class="room-tag">Signature Suite</span>
@@ -866,7 +895,7 @@
     </div>
     <div class="room-card reveal">
       <div class="room-img-wrap">
-        <img src="villa_living.png" alt="Garden Suite" class="room-img" />
+        <img src="real_living.jpg" alt="Garden Suite" class="room-img" />
       </div>
       <div class="room-body">
         <span class="room-tag">Garden Suite</span>
@@ -886,7 +915,7 @@
     </div>
     <div class="room-card reveal">
       <div class="room-img-wrap">
-        <img src="villa_pool.png" alt="Pool Villa" class="room-img" />
+        <img src="real_pool.jpg" alt="Pool Villa" class="room-img" />
       </div>
       <div class="room-body">
         <span class="room-tag">Pool Access Suite</span>
